@@ -1,2 +1,2 @@
-<a id="remove" href="#" data-id="<%= @item.id %>">[x]</a>
-<%= @item.get('name') %>
+<a id="remove" href="#" data-id="<%= @model.id %>">[x]</a>
+<%= @model.get('name') %>
