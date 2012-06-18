@@ -1,1 +1,0 @@
-class Raffler.Models.Item extends Backbone.Model

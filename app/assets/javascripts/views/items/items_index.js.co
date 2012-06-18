@@ -1,39 +1,40 @@
-class Raffler.Views.ItemsIndex extends Backbone.View
-	template: JST['items/index']
+Raffler.Views.ItemsIndex = Backbone.View.extend do
+	template: JST'items/index'
 
 	events:
-		'submit #new_item': 'addItem'
-		'click #remove': 'deleteItem'
+		'submit #new_item': \addItem
+		'click #remove': \deleteItem
 
-	initialize: ->
+	initialize: !->
 		#reset when fetch(), remove when destroy()
-		#reset appelé via fetch(), remove appelé via destroy()
-		@collection.on 'reset remove', @render
-		@collection.on 'add', @appendItem
+		#reset appelÃ© via fetch(), remove appelÃ© via destroy()
+		@collection.on 'reset remove' @~render
+		@collection.on \add @~appendItem
 
-	render: =>
-		$(@el).html @template(items: @collection)
+	render: ->
+		$ @el .html @template
 		#for each element, call "appendItem"
 		#pour chaque element, on appelle "appendItem"
 		@collection.each @appendItem
 		this
 
 
-	addItem: (event) ->
+	addItem: ->
 		#attributes list - only the name
 		#liste des attributs - uniquement le nom
-		attributes = name: $('#new_item_name').val()
+		attributes =
+			name: $ \#new_item_name .val!
 		
 		#@collection.create triggers a HTTP request
-		#@collection.create fait une requête HTTP
+		#@collection.create fait une requÃªte HTTP
 		item = @collection.create attributes,
 			#wait for the server's answer before triggering the event
-			#on attend la réponse serveur avant de lancer l'évènement "add"
+			#on attend la rÃ©ponse serveur avant de lancer l'Ã©vÃ¨nement "add"
 			wait: true
 			
 			#if it worked, clear the field
-			#si ça a marché, on vide le champ
-			success: -> $('#new_item_name').val('')
+			#si Ã§a a marchÃ©, on vide le champ
+			success: !-> $ \#new_item_name .val ''
 			
 			#else handle errors
 			#sinon on s'occupe des erreurs - plus bas
@@ -42,16 +43,16 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 	
 	#triggered when clicking on [x]
 	#quand on clique sur [x]
-	deleteItem: (event) ->
+	deleteItem: ->
 		#element
-		target = $ event.currentTarget
+		target = $ it.currentTarget
 		
 		#data-id=""
-		item = @collection.get target.data('id')
+		item = @collection.get target.data \id
 		
 		#destroy the element, and triggers the event "remove"
-		#supprime l'élèment, et lance l'évènement "remove"
-		item.destroy()
+		#supprime l'Ã©lÃ¨ment, et lance l'Ã©vÃ¨nement "remove"
+		item.destroy!
 		
 		#does not follow the link
 		#ne pas suivre le lien
@@ -59,29 +60,29 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 
 	#button "Add"
 	#bouton "add"
-	appendItem: (item) =>
+	appendItem: !->
 		#create a view for that model
-		#on créé une vue pour ce model
-		view = new Raffler.Views.Item model: item
+		#on crÃ©Ã© une vue pour ce model
+		view = new Raffler.Views.Item model: it
 		
 		#and add it to the item list (ul#items)
-		#et on l'ajoute à la liste des items(<ul id="items")
-		$('#items').append view.render().el
+		#et on l'ajoute Ã  la liste des items(<ul id="items")
+		$ '#items' .append view.render!el
 
 
 	#handle errors
 	#gestion des erreurs
-	handleError: (entry, response) ->
+	handleError: !(, response) ->
 		#code 422 : bad request
-		#code 422 : requête incorrecte
+		#code 422 : requÃªte incorrecte
 		if response.status is 422
 			#get the error, using jQuery.parseJSON on response.responseText
-			#on récupère les erreurs, en utilisant jQuery.parseJSON sur response.responseText
-			errors = $.parseJSON(response.responseText).errors
+			#on rÃ©cupÃ¨re les erreurs, en utilisant jQuery.parseJSON sur response.responseText
+			errors = $.parseJSON response.responseText .errors
 			
 			#{'name' => ['is blank']}
 			#{'name' => ['est blanc']}
-			for attribute, messages of errors
+			for attribute, messages in errors
 				#alert errors for each attribute
 				#pour chaque attribut, on affiche les erreurs
 				alert "#{attribute}: #{messages.join ', '}."
