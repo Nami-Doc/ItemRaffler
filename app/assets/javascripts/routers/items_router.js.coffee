@@ -8,7 +8,7 @@ class Raffler.Routers.Items extends Backbone.Router
 		@collection = new Raffler.Collections.Items()
 		
 		#will triggers event "reset"
-		#lancera l'évènement "reset"
+		#lancera l'Ã©vÃ¨nement "reset"
 		@collection.fetch()
 
 	index: ->

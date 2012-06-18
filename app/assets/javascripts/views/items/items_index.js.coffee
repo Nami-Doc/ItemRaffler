@@ -7,7 +7,7 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 
 	initialize: ->
 		#reset when fetch(), remove when destroy()
-		#reset appelé via fetch(), remove appelé via destroy()
+		#reset appelÃ© via fetch(), remove appelÃ© via destroy()
 		@collection.on 'reset remove', @render
 		@collection.on 'add', @appendItem
 
@@ -25,14 +25,14 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 		attributes = name: $('#new_item_name').val()
 		
 		#@collection.create triggers a HTTP request
-		#@collection.create fait une requête HTTP
+		#@collection.create fait une requÃªte HTTP
 		item = @collection.create attributes,
 			#wait for the server's answer before triggering the event
-			#on attend la réponse serveur avant de lancer l'évènement "add"
+			#on attend la rÃ©ponse serveur avant de lancer l'Ã©vÃ¨nement "add"
 			wait: true
 			
 			#if it worked, clear the field
-			#si ça a marché, on vide le champ
+			#si Ã§a a marchÃ©, on vide le champ
 			success: -> $('#new_item_name').val('')
 			
 			#else handle errors
@@ -50,7 +50,7 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 		item = @collection.get target.data('id')
 		
 		#destroy the element, and triggers the event "remove"
-		#supprime l'élèment, et lance l'évènement "remove"
+		#supprime l'Ã©lÃ¨ment, et lance l'Ã©vÃ¨nement "remove"
 		item.destroy()
 		
 		#does not follow the link
@@ -61,11 +61,11 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 	#bouton "add"
 	appendItem: (item) =>
 		#create a view for that model
-		#on créé une vue pour ce model
+		#on crÃ©Ã© une vue pour ce model
 		view = new Raffler.Views.Item model: item
 		
 		#and add it to the item list (ul#items)
-		#et on l'ajoute à la liste des items(<ul id="items")
+		#et on l'ajoute Ã  la liste des items(<ul id="items")
 		$('#items').append view.render().el
 
 
@@ -73,10 +73,10 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 	#gestion des erreurs
 	handleError: (entry, response) ->
 		#code 422 : bad request
-		#code 422 : requête incorrecte
+		#code 422 : requÃªte incorrecte
 		if response.status is 422
 			#get the error, using jQuery.parseJSON on response.responseText
-			#on récupère les erreurs, en utilisant jQuery.parseJSON sur response.responseText
+			#on rÃ©cupÃ¨re les erreurs, en utilisant jQuery.parseJSON sur response.responseText
 			errors = $.parseJSON(response.responseText).errors
 			
 			#{'name' => ['is blank']}
