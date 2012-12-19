@@ -77,14 +77,15 @@ class Raffler.Views.ItemsIndex extends Backbone.View
 	handle-error: !(, {status, response-text}) ->
 		# code 422 : bad request
 		# code 422 : requête incorrecte
-		if status is 422
-			# get the error, using jQuery.parseJSON on response.responseText
-			# on récupère les erreurs, en utilisant jQuery.parseJSON sur response.responseText
-			errors = $.parse-JSON response-text .errors
-			
-			# {'name' => ['is blank']}
-			# {'name' => ['est blanc']}
-			for attribute, messages in errors
-				# alert errors for each attribute
-				# pour chaque attribut, on affiche les erreurs
-				alert "#attribute: #{messages * ', '}."
+		return unless status is 422
+		
+		# get the error, using jQuery.parseJSON on response.responseText
+		# on récupère les erreurs, en utilisant jQuery.parseJSON sur response.responseText
+		errors = $.parse-JSON response-text .errors
+		
+		# {'name' => ['is blank']}
+		# {'name' => ['est blanc']}
+		for attribute, messages in errors
+			# alert errors for each attribute
+			# pour chaque attribut, on affiche les erreurs
+			alert "#attribute: #{messages * ', '}."
