@@ -1,2 +1,2 @@
-class Raffler.Collections.Items extends Backbone.Collection.extend
+class Raffler.Collections.Items extends Backbone.Collection
 	url: '/api/items'

@@ -7,9 +7,9 @@ Raffler.Routers.Items = Backbone.Router.extend do
 	initialize: !->
 		@collection = new Raffler.Collections.Items
 		
-		#will triggers event "reset"
-		#lancera l'évènement "reset"
-		@collection.fetch!
+		# will triggers event "reset"
+		# lancera l'évènement "reset"
+			..fetch!
 
 	index: !->
 		view = new Raffler.Views.ItemsIndex {@collection}
