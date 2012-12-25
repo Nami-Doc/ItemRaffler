@@ -9,8 +9,9 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 	initialize: !->
 		# reset when fetch(), remove when destroy()
 		# reset appelé via fetch(), remove appelé via destroy()
-		@collection.on 'reset remove' @render
-		@collection.on 'add' @appendItem
+		@collection
+			..on 'reset remove' @render
+			..on 'add' @appendItem
 
 	render: ~>
 		$ @el .html @template
@@ -26,12 +27,11 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 
 		# attributes list - only the name
 		# liste des attributs - uniquement le nom
-		attributes =
-			name: $name.val!
+		attributes = name: $name.val!
 		
 		# @collection.create triggers a HTTP request
 		# @collection.create fait une requête HTTP
-		item = @collection.create attributes,
+		@collection.create attributes,
 			# wait for the server's answer before triggering the event
 			# on attend la réponse serveur avant de lancer l'évènement "add"
 			wait: true
@@ -52,11 +52,10 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 		target = $ current-target
 		
 		# data-id=""
-		item = @collection.get target.data 'id'
-		
-		# destroy the element, and triggers the event "remove"
-		# supprime l'élèment, et lance l'évènement "remove"
-		item.destroy!
+		@collection.get target.data 'id'
+			# destroy the element, and triggers the event "remove"
+			# supprime l'élèment, et lance l'évènement "remove"
+			.destroy!
 		
 		# don't follow the link
 		# ne pas suivre le lien
@@ -64,10 +63,10 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 
 	# button "Add"
 	# bouton "add"
-	append-item: !(model) ~>
+	append-item: !~>
 		# create a view for that model
 		# on créé une vue pour ce model
-		view = new Raffler.Views.Item {model}
+		view = new Raffler.Views.Item model: it
 		
 		# and add it to the item list (ul#items)
 		# et on l'ajoute à la liste des items(<ul id="items")
