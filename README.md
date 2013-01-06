@@ -6,7 +6,7 @@ ItemRaffler
 Vous avez besoin de Ruby 1.9.2 ou supérieur
 Tapez les commandes suivantes dans la console (shell, cmd.exe, ...)
 
- * bundle install
+ * bundle
  * rake db:migrate
  * rails s
 
@@ -15,6 +15,6 @@ Tapez les commandes suivantes dans la console (shell, cmd.exe, ...)
 You need Ruby 1.9.2 or greater
 Type the following commands (shell, cmd.exe, ...)
 
- * bundle install
+ * bundle
  * rake db:migrate
  * rails s
