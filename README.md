@@ -3,7 +3,7 @@ ItemRaffler
 
 
 # Etapes d'installations
-Vous avez besoin de Ruby 1.9.2 ou supérieur, ainsi que rubygems (fourni avec)
+Vous avez besoin de Ruby 1.9.2 ou supérieur
 Tapez les commandes suivantes dans la console (shell, cmd.exe, ...)
 
  * bundle install
@@ -12,7 +12,7 @@ Tapez les commandes suivantes dans la console (shell, cmd.exe, ...)
 
 
 # Installation steps
-You need Ruby 1.9.2 or greater, with rubygems (bundled)
+You need Ruby 1.9.2 or greater
 Type the following commands (shell, cmd.exe, ...) :
 
  * bundle install
