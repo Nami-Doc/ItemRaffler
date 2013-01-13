@@ -1,2 +1,0 @@
-Raffler.Collections.Items = Backbone.Collection.extend do
-	url: '/api/items'
