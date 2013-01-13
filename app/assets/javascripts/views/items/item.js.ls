@@ -1,9 +1,9 @@
-Raffler.Views.Item = Backbone.View.extend do
+class Raffler.Views.Item extends Backbone.View
 	template: JST'items/item'
-	tagName: 'li'
+	tag-name: 'li'
 
-	#display
-	#affichage
+	# display
+	# affichage
 	render: ->
 		$ @el .html @template {@model}
 		this

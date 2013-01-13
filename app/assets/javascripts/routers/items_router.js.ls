@@ -1,4 +1,4 @@
-Raffler.Routers.Items = Backbone.Router.extend do
+class Raffler.Routers.Items extends Backbone.Router
 	routes:
 		'':			\index
 		'items':	\index
