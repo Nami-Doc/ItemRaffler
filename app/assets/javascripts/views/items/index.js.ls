@@ -1,5 +1,4 @@
-#XXX: mv items_index.js.ls => index.js.ls ?
-Raffler.Views.ItemsIndex = Backbone.View.extend do
+class Raffler.Views.ItemsIndex extends Backbone.View
 	template: JST'items/index'
 
 	events:
