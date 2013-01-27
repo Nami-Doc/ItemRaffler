@@ -1,3 +1,4 @@
+#XXX: mv items_index.js.ls => index.js.ls ?
 Raffler.Views.ItemsIndex = Backbone.View.extend do
 	template: JST'items/index'
 
@@ -20,10 +21,13 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 
 
 	add-item: ->
+		#DOM caching
+		$name = $ '#new_item_name'
+
 		#attributes list - only the name
 		#liste des attributs - uniquement le nom
 		attributes =
-			name: $ '#new_item_name' .val!
+			name: $name.val!
 		
 		#@collection.create triggers a HTTP request
 		#@collection.create fait une requête HTTP
@@ -34,7 +38,7 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 			
 			#if it worked, clear the field
 			#si ça a marché, on vide le champ
-			success: !-> $ '#new_item_name' .val ''
+			success: !-> $name.val ''
 			
 			#else handle errors
 			#sinon on s'occupe des erreurs - plus bas
@@ -45,7 +49,7 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 	#quand on clique sur [x]
 	delete-item: ({current-target}) ->
 		#element
-		target = $ currentTarget
+		target = $ current-target
 		
 		#data-id=""
 		item = @collection.get target.data 'id'
@@ -78,7 +82,7 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 		if status is 422
 			#get the error, using jQuery.parseJSON on response.responseText
 			#on récupère les erreurs, en utilisant jQuery.parseJSON sur response.responseText
-			errors = $.parseJSON response-text .errors
+			errors = $.parse-JSON response-text .errors
 			
 			# {'name' => ['is blank']}
 			# {'name' => ['est blanc']}
