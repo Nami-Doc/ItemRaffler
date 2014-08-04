@@ -4,8 +4,8 @@ window.Raffler =
 	Views: {}
 	Routers: {}
 	init: ->
-		new Raffler.Routers.Items()
+		new Raffler.Routers.Items
 		Backbone.history.start!
 
-$ ->
-	Raffler.init!
+<- $
+Raffler.init!
