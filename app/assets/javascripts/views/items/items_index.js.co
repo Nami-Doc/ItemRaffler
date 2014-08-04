@@ -3,13 +3,14 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 
 	events:
 		'submit #new_item': \addItem
-		'click #remove': \deleteItem
+		'click #remove':    \deleteItem
 
 	initialize: !->
 		#reset when fetch(), remove when destroy()
 		#reset appelé via fetch(), remove appelé via destroy()
-		@collection.on 'reset remove' @~render
-		@collection.on \add @~appendItem
+		@collection
+			..on 'reset remove' @~render
+			..on \add @~appendItem
 
 	render: ->
 		$ @el .html @template
@@ -20,10 +21,12 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 
 
 	addItem: ->
+		$new_item_val = $ \#new_item_name
+	
 		#attributes list - only the name
 		#liste des attributs - uniquement le nom
 		attributes =
-			name: $ \#new_item_name .val!
+			name: $new_item_val.val!
 		
 		#@collection.create triggers a HTTP request
 		#@collection.create fait une requête HTTP
@@ -34,11 +37,11 @@ Raffler.Views.ItemsIndex = Backbone.View.extend do
 			
 			#if it worked, clear the field
 			#si ça a marché, on vide le champ
-			success: !-> $ \#new_item_name .val ''
+			success: !-> $new_item_name.val ''
 			
 			#else handle errors
 			#sinon on s'occupe des erreurs - plus bas
-			error: @handleError
+			error: @~handleError
 		false
 	
 	#triggered when clicking on [x]
