@@ -1,1 +1,1 @@
-Raffler.Models.Item = Backbone.Model.extend
+class Raffler.Models.Item extends Backbone.Model.extend
