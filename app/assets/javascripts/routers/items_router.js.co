@@ -1,11 +1,11 @@
 Raffler.Routers.Items = Backbone.Router.extend do
 	routes:
-		'':			\index
-		'items':	\index
+		'':          \index
+		'items':     \index
 		'items/:id': \show
 
 	initialize: !->
-		@collection = new Raffler.Collections.Items()
+		@collection = new Raffler.Collections.Items
 		
 		#will triggers event "reset"
 		#lancera l'évènement "reset"
